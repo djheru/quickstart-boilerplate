@@ -1,10 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule, appModuleDocumentation } from './app.module';
+import { LoggerService } from './logger/logger.service';
 
 const { ADDRESS = '0.0.0.0', NAME, PORT = 4000 } = process.env;
 
 async function bootstrap() {
+  const logger = new LoggerService('ApplicationBootstrap');
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(
     new ValidationPipe({
@@ -19,5 +21,6 @@ async function bootstrap() {
   appModuleDocumentation(app);
   app.enableCors();
   await app.listen(PORT, ADDRESS);
+  logger.log(`${NAME} API running at: ${ADDRESS}:${PORT}`);
 }
 bootstrap();

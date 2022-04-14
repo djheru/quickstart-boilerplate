@@ -17,6 +17,7 @@
     "start:debug": "nest start --debug 0.0.0.0:9229 --watch",
     "start:prod": "node dist/main",
     "start:docker": "docker-compose -f ./docker-compose.yml up",
+    "start:docker-fresh": "docker-compose -f ./docker-compose.yml up --force-recreate -build",
     "start:docker-debug": "docker-compose -f ./docker-compose.yml -f ./docker-compose.debug.yml up",
     "start:docker-db": "docker-compose -f ./docker-compose.yml up -d core-message-store-proxy-pg",
     "start:docs": "npx compodoc -p tsconfig.json -n 'Quickstart API Documentation' --hideGenerator --serve --watch --theme stripe",
@@ -35,6 +36,7 @@
     "@nestjs/swagger": "^5.2.1",
     "@nestjs/typeorm": "^8.0.3",
     "dotenv": "^16.0.0",
+    "express": "4",
     "jwks-rsa": "^2.0.5",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
@@ -43,7 +45,7 @@
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
     "swagger-ui-express": "^4.3.0",
-    "typeorm": "^0.3.6",
+    "typeorm": "^0.2.34",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
@@ -70,7 +72,8 @@
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
     "tsconfig-paths": "^3.10.1",
-    "typescript": "^4.3.5"
+    "typescript": "^4.3.5",
+    "webpack": "5"
   },
   "jest": {
     "moduleFileExtensions": [
