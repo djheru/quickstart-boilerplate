@@ -36,3 +36,6 @@ lerna-debug.log*
 
 # Environment config
 .env
+
+# Generated documentation
+documentation
