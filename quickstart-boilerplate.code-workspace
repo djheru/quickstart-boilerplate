@@ -4,5 +4,24 @@
       "path": "."
     }
   ],
-  "settings": {}
+  "settings": {
+    "launch": {
+      "configurations": [
+        {
+          "type": "node",
+          "request": "attach",
+          "name": "Debug: API",
+          "remoteRoot": "/usr/src/app",
+          "localRoot": "${workspaceFolder}/api",
+          "protocol": "inspector",
+          "port": 9229,
+          "restart": true,
+          "address": "0.0.0.0",
+          "outFiles": ["${workspaceFolder}/api/dist/**/*.js"],
+          "skipFiles": ["<node_internals>/**"],
+          "sourceMaps": true
+        }
+      ]
+    }
+  }
 }

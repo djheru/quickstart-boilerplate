@@ -1,0 +1,43 @@
+version: '3.7'
+
+services:
+  quickstart-api:
+    container_name: quickstart-api
+    build:
+      context: ./
+      target: development # or test or production
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 4000:4000
+    command: npm run start:dev
+    env_file:
+      - ./.env
+    environment:
+      - PGHOST=quickstart-api-pg
+      - ADDRESS=0.0.0.0
+    networks:
+      - quickstart-api-net
+    depends_on:
+      - quickstart-api-pg
+
+  quickstart-api-pg:
+    container_name: quickstart-api-pg
+    image: postgres:12.9
+    networks:
+      - quickstart-api-net
+    environment:
+      POSTGRES_PASSWORD: ${PGPASSWORD}
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_DB: ${PGDATABASE}
+      PG_DATA: /var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    volumes:
+      - quickstart-api-pgdata:/var/lib/postgresql/data
+
+networks:
+  quickstart-api-net:
+volumes:
+  quickstart-api-pgdata:
