@@ -4,7 +4,7 @@ import * as iam from 'aws-cdk-lib/aws-iam';
 import { pascalCase } from 'pascal-case';
 import { Environment } from './quickstart-stack';
 
-export const CDK_VERSION = '2.9.0';
+export const CDK_VERSION = '2.20.0';
 
 export interface InfrastructureProjectConfigParams {
   id: string;
@@ -38,12 +38,14 @@ export const infrastructureProjectConfig = ({
       install: {
         commands: [
           'echo Build started at `date`',
-          `echo Beginning infrastructure build operations for "${id}"`,
+          `echo Beginning infrastructure and static site build operations for "${id}"`,
+          'yarn config set unsafe-perm true',
           'yarn install --silent',
-          `yarn global add typescript aws-cdk@${CDK_VERSION} --silent`,
+          'yarn --cwd ./web install',
+          `yarn global add typescript aws-cdk@${CDK_VERSION} parcel-bundler --silent`,
         ],
       },
-      build: { commands: ['yarn build'] },
+      build: { commands: ['yarn --cwd ./web build', 'cdk synth'] },
       post_build: {
         commands: [
           'echo Updating the Application DB CDK infrastructure stack...',
