@@ -1,6 +1,7 @@
 {
   "name": "quickstart-boilerplate",
   "version": "0.1.0",
+  "license": "UNLICENSED",
   "bin": {
     "quickstart-boilerplate": "bin/quickstart-boilerplate.js"
   },
@@ -8,7 +9,9 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "db-tunnel": "./scripts/db-tunnel.sh",
+    "docker-init": "./scripts/docker-init.sh"
   },
   "devDependencies": {
     "@types/jest": "^26.0.10",
@@ -18,11 +21,11 @@
     "jest": "^26.4.2",
     "ts-jest": "^26.2.0",
     "ts-node": "^9.0.0",
-    "typescript": "~3.9.7",
-    "undefined": "^0.1.0"
+    "typescript": "~3.9.7"
   },
   "dependencies": {
     "aws-cdk-lib": "2.20.0",
+    "change-case": "^4.1.2",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.16"
   }
