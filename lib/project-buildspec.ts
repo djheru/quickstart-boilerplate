@@ -21,7 +21,7 @@ export const infrastructureProjectConfig = ({
   projectName: pascalCase(`${id}-infrastructure-build`),
   description: 'CodeBuild project to perform CDK deployments on the Application DB stack',
   environment: {
-    buildImage: codebuild.LinuxBuildImage.AMAZON_LINUX_2_3,
+    buildImage: codebuild.LinuxBuildImage.STANDARD_5_0,
     privileged: true,
   },
   environmentVariables: {
@@ -43,7 +43,7 @@ export const infrastructureProjectConfig = ({
           `yarn global add typescript aws-cdk@${CDK_VERSION} --silent`,
         ],
       },
-      build: { commands: ['yarn build build'] },
+      build: { commands: ['yarn build'] },
       post_build: {
         commands: [
           'echo Updating the Application DB CDK infrastructure stack...',
@@ -76,7 +76,7 @@ export const apiProjectConfig = ({
 }: ApiProjectConfigParams) => ({
   projectName: pascalCase(`${id}-api-build`),
   environment: {
-    buildImage: codebuild.LinuxBuildImage.AMAZON_LINUX_2_2,
+    buildImage: codebuild.LinuxBuildImage.STANDARD_5_0,
     privileged: true,
   },
   environmentVariables: {
