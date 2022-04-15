@@ -98,6 +98,7 @@ export const apiProjectConfig = ({
           `cd ${sourcePath}`,
           'yarn global add @nestjs/cli typeorm --silent',
           'yarn install --silent',
+          'echo "Version: $CODEBUILD_RESOLVED_SOURCE_VERSION"',
           'export TAG=${CODEBUILD_RESOLVED_SOURCE_VERSION:0:8}',
           `echo Beginning build operations for "${repositoryName}"`,
           'echo Logging in to AWS ECR...',
