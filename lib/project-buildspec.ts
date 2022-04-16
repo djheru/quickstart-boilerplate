@@ -98,7 +98,6 @@ export const apiProjectConfig = ({
           `cd ${sourcePath}`,
           'yarn global add @nestjs/cli typeorm --silent',
           'yarn install --silent',
-          'printenv',
           'export TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-9)',
           `echo Beginning build operations for "${repositoryName}"`,
           'echo Logging in to AWS ECR...',
